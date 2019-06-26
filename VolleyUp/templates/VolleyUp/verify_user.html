@@ -1,0 +1,23 @@
+{% extends 'VolleyUp/base.html' %}
+{% block login %}
+{% endblock %}
+{% block content %}
+
+    Użytkownicy do zweryfikowania:
+
+    <ul><br>
+    {% for user in users %}
+        <li>
+            Imię i nazwisko: {{ user.first_name }} {{ user.last_name }}<br>
+            Email: {{ user.email }}<br>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{ user.id }}">
+                <input type="hidden" name="action" value="verify">
+                <input type="submit" value="Zatwierdź">
+            </form>
+        </li><br>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

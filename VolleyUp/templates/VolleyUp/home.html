@@ -1,0 +1,20 @@
+{% extends 'VolleyUp/base.html' %}
+
+{% block login %}
+
+    <div>
+        {% if user.is_authenticated %}
+            {{ user.first_name }}
+            <p><a href="{% url 'logout' %}" class="btn btn-danger">Wyloguj się</a></p>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-success">Zaloguj się</a>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+{% block content %}
+
+    <h3>Witaj na stronie VolleyUp!</h3>
+
+{% endblock %}
