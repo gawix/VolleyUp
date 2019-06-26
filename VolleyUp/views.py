@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse
+from django.forms import model_to_dict
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from VolleyUp.models import *
@@ -15,16 +16,15 @@ class HomeView(View):
         return render(request, 'VolleyUp/home.html', context)
 
 
-class AddUserView(View):
+class RegisterUserView(View):
 
     def get(self, request):
-        form = AddUserForm()
-        context = {'form': form,
-                   'submit': 'Dodaj studenta'}
+        context = {'form': RegisterUserForm(),
+                   'submit': 'Zarejestruj się'}
         return render(request, 'VolleyUp/form.html', context)
 
     def post(self, request):
-        form = AddUserForm(request.POST)
+        form = RegisterUserForm(request.POST)
 
         if form.is_valid():
             first_name = form.cleaned_data.get('first_name')
@@ -42,7 +42,7 @@ class AddUserView(View):
             return redirect(reverse_lazy('home'))
         else:
             context = {'form': form,
-                       'submit': 'Dodaj studenta'}
+                       'submit': 'Zarejestruj się'}
             return render(request, 'VolleyUp/form.html', context)
 
 
@@ -58,6 +58,7 @@ class LoginView(View):
             user_email = form.cleaned_data.get('user_email')
             user_password = form.cleaned_data.get('user_password')
             user = authenticate(username=user_email, password=user_password)
+            print(user)
             if user is not None:
                 login(request, user)
                 next = request.GET.get('next')
@@ -66,7 +67,7 @@ class LoginView(View):
                 return redirect(reverse_lazy('home'))
 
         context = {'form': LoginForm(),
-                   'message': 'Musisz poczekać na weryfikację',
+                   'message': 'Musisz się zarejestrować lub poczekać na weryfikację',
                    'submit': "Zaloguj się"}
         return render(request, 'VolleyUp/form.html', context)
 
@@ -83,23 +84,17 @@ class AddTrainingView(View):
         form = AddTrainingForm()
         context = {'form': form,
                    'submit': 'Dodaj trening'}
-        return render(request, 'VolleyUp/add_training.html', context)
+        return render(request, 'VolleyUp/form.html', context)
 
     def post(self, request):
         form = AddTrainingForm(request.POST)
         if form.is_valid():
-            start_time = form.cleaned_data.get('start_time')
-            facility = form.cleaned_data.get('facility')
-            level = form.cleaned_data.get('level')
-            organization = form.cleaned_data.get('organization')
-            description = form.cleaned_data.get('description')
-            Training.objects.create(start_time=start_time, facility=facility, level=level, organization=organization,
-                                    description=description)
+            form.save()
             return redirect(reverse_lazy('home'))
         else:
             context = {'form': form,
                        'submit': 'Dodaj trening'}
-            return render(request, 'VolleyUp/add_training.html', context)
+            return render(request, 'VolleyUp/form.html', context)
 
 
 class VerifyUserView(View):
@@ -115,3 +110,25 @@ class VerifyUserView(View):
         user.is_active = True
         user.save()
         return redirect(reverse_lazy('verify_user'))
+
+
+class EditTrainingView(View):
+
+    def get(self, request, training_id):
+        try:
+            training = Training.objects.get(pk=training_id)
+            form = AddTrainingForm(instance=training)
+            context = {'form': form,
+                       'submit': 'Zapisz trening'}
+        except Training.DoesNotExist:
+            raise Http404('Taki trening nie istnieje')
+        return render(request, 'VolleyUp/form.html', context)
+
+    def post(self, request, training_id):
+        training = Training.objects.get(pk=training_id)
+        form = AddTrainingForm(request.POST, instance=training)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse_lazy('home'))
+
+

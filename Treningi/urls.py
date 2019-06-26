@@ -22,7 +22,8 @@ urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
-    url(r'^add_user/$', AddUserView.as_view(), name='add_user'),
+    url(r'^register_user/$', RegisterUserView.as_view(), name='register_user'),
     url(r'^add_training/$', AddTrainingView.as_view(), name='add_training'),
     url(r'^verify_user/$', VerifyUserView.as_view(), name='verify_user'),
+    url(r'^edit_training/(?P<training_id>(\d)+)/$', EditTrainingView.as_view(), name='edit_training'),
 ]

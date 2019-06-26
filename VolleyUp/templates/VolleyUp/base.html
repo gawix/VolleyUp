@@ -18,6 +18,18 @@
                 </a>
 
     {% block login %}
+        <div>
+            {% if user.is_authenticated %}
+                <p>{{ user.first_name }}<a href="{% url 'logout' %}" class="btn btn-danger">Wyloguj się</a></p>
+            {% elif submit == 'Zarejestruj się' %}
+                <a href="{% url 'login' %}" class="btn btn-success">Zaloguj się</a>
+            {% elif submit == 'Zaloguj się' %}
+                <a href="{% url 'register_user' %}" class="btn btn-success">Zarejestruj się</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-success">Zaloguj się</a>
+                <a href="{% url 'register_user' %}" class="btn btn-success">Zarejestruj się</a>
+            {% endif %}
+        </div>
     {% endblock %}
 
             </nav>

@@ -74,8 +74,8 @@ class User(AbstractUser):
     username = None
     email = models.EmailField('user email', unique=True)
 
-    phone_number = models.CharField(verbose_name='numer telefonu', max_length=17)
-    birth_date = models.IntegerField(verbose_name='data urodzenia', blank=True)
+    phone_number = models.CharField(max_length=17)
+    birth_date = models.IntegerField(blank=True)
     sex = models.IntegerField(choices=SEX, default=1)
     organization = models.IntegerField(choices=ORGANIZATIONS, default=5)
     level = models.IntegerField(choices=LEVELS, default=1)
@@ -108,3 +108,18 @@ class Training(models.Model):
     description = models.TextField(null=True)
 
 
+DAYS = (
+
+    (1, "Poniedziałek"),
+    (2, "Wtorek"),
+    (3, "Środa"),
+    (4, "Czwartek"),
+    (5, "Piątek"),
+    (6, "Sobota"),
+    (7, "Niedziela"),
+
+)
+
+
+class Weekdays(models.Model):
+    day = models.IntegerField(choices=DAYS, default=1)
