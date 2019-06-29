@@ -1,0 +1,14 @@
+{% extends 'VolleyUp/base.html' %}
+{% block content %}
+
+    <div class="text-center">
+            <b>Imię i nazwisko:</b> {{ user.first_name }} {{ user.last_name }}<br>
+            <b>Email:</b> {{ user.email }}<br>
+            <b>Numer telefonu:</b> {{ user.phone_number }}<br>
+            <b>Rok urodzenia:</b> {{ user.birth_date }}<br>
+            <b>Płeć:</b> {{ user.get_sex_display }}<br>
+            <b>Organizacja:</b> {{ user.get_organization_display }}<br>
+            <b>Poziom:</b> {{ user.get_level_display }}<br>
+    </div>
+
+{% endblock %}

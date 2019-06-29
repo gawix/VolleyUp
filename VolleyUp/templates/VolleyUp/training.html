@@ -1,0 +1,39 @@
+{% extends 'VolleyUp/base.html' %}
+
+{% block content %}
+    <div class="clearfix">
+      <a class="btn btn-info left" href="{% url 'calendar' %}"> Powrót do kalendarza </a>
+    </div>
+
+    <table class="form form-table">
+        {% if user.is_staff == True %}
+            <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <tr><td colspan="2">
+                <input type="submit" name="action" value="Powiel trening" class="btn btn-info right"></td></tr>
+            <tr><td colspan="2">
+                <input type="submit" name="action" value="Zapisz trening" class="btn btn-info right"></td></tr>
+            </form>
+
+            <form method="post">
+            {% csrf_token %}<tr>
+                <td colspan="2">
+                <input type="hidden" name="action" value="delete">
+                <input type="submit" value="Usuń trening" class="btn btn-info right"></td></tr>
+            </form>
+        {% endif %}
+    </table>
+
+    <div class="clearfix">
+        <p>
+            Początek treningu: {{ training.start_time }}<br>
+            Koniec treningu: {{ training.end_time }}<br>
+            Sala: {{ training.facility }}<br>
+            Poziom: {{ training.level }}<br>
+            Organizacja: {{ training.organization }}<br>
+            Opis treningu: {{ training.description }}<br>
+        </p>
+    </div>
+
+{% endblock %}
