@@ -36,6 +36,18 @@ class RegisterUserForm(forms.Form):
         return password
 
 
+class EditUserForm(UserChangeForm):
+
+    password = None
+    email = None
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'organization', 'level']
+        labels = {'phone_number': 'Numer telefonu', 'birth_date': 'Rok urodzenia', 'sex': 'Płeć',
+                  'organization': 'Organizacja', 'level': 'Poziom'}
+
+
 class LoginForm(forms.Form):
     user_email = forms.EmailField(label="Podaj email")
     user_password = forms.CharField(widget=PasswordInput(), label="Podaj hasło")
