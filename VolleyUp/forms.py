@@ -46,6 +46,21 @@ class EditUserForm(UserChangeForm):
                   'organization': 'Organizacja', 'level': 'Poziom'}
 
 
+class ChangePasswordForm(forms.Form):
+    old_password = forms.CharField(widget=forms.PasswordInput())
+    password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
+
+    def clean_confirm_password(self):
+        password = self.cleaned_data.get("password")
+        confirm_password = self.cleaned_data.get("confirm_password")
+        if password != confirm_password:
+            raise forms.ValidationError(
+                "Wprowadź dwa razy to samo hasło"
+            )
+        return password
+
+
 class LoginForm(forms.Form):
     user_email = forms.EmailField(label="Podaj email")
     user_password = forms.CharField(widget=PasswordInput(), label="Podaj hasło")

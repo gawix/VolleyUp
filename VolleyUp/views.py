@@ -72,6 +72,39 @@ class EditUserView(View):
             return render(request, 'VolleyUp/form.html', context)
 
 
+class ChangePasswordView(View):
+
+    def get(self, request, user_id):
+        user = User.objects.get(pk=user_id)
+        form = ChangePasswordForm()
+        context = {'form': form,
+                   'submit': 'Zmień hasło',
+                   'user': user}
+        return render(request, 'VolleyUp/form.html', context)
+
+    def post(self, request, user_id):
+        form = ChangePasswordForm(request.POST)
+        if form.is_valid():
+            user = User.objects.get(pk=user_id)
+            old_password = form.cleaned_data.get('old_password')
+            check_user = authenticate(username=user, password=old_password)
+            if check_user is not None:
+                password = form.cleaned_data.get('password')
+                user.set_password(password)
+                user.save()
+                return redirect('user_details', user_id=user_id)
+            else:
+                message = "Błędne stare hasło"
+                context = {"form": form,
+                           "submit": "Zaloguj",
+                           "message": message}
+                return render(request, "VolleyUp/form.html", context)
+        else:
+            context = {"form": form,
+                       "submit": "dodaj użytkownika"}
+            return render(request, "VolleyUp/form.html", context)
+
+
 class LoginView(View):
     def get(self, request):
         context = {'form': LoginForm(),
@@ -83,18 +116,35 @@ class LoginView(View):
         if form.is_valid():
             user_email = form.cleaned_data.get('user_email')
             user_password = form.cleaned_data.get('user_password')
-            user = authenticate(username=user_email, password=user_password)
-            if user is not None:
-                login(request, user)
-                next = request.GET.get('next')
-                if next is not None:
-                    return redirect(next)
-                return redirect(reverse_lazy('calendar'))
-
-        context = {'form': LoginForm(),
-                   'message': 'Musisz się zarejestrować lub poczekać na weryfikację',
-                   'submit': "Zaloguj się"}
+            try:
+                user_active = User.objects.get(email=user_email)
+                if user_active.is_active is False:
+                    context = {'form': LoginForm(),
+                               'message': 'Musisz poczekać na weryfikację',
+                               'submit': "Zaloguj się"}
+                    return render(request, 'VolleyUp/form.html', context)
+                user = authenticate(username=user_email, password=user_password)
+                if user is not None:
+                    login(request, user)
+                    next = request.GET.get('next')
+                    if next is not None:
+                        return redirect(next)
+                    return redirect(reverse_lazy('calendar'))
+            except User.DoesNotExist:
+                message = "Użytkownik o podanym adresie email nie istnieje, proszę się zarejestrować"
+                context = {'form': form,
+                           'submit': 'Zaloguj się',
+                           'message': message}
+                return render(request, 'VolleyUp/form.html', context)
+        message = "Błędny email lub hasło"
+        context = {'form': form,
+                   'submit': 'Zaloguj się',
+                   'message': message}
         return render(request, 'VolleyUp/form.html', context)
+        # context = {'form': LoginForm(),
+        #            'message': 'Musisz się zarejestrować lub poczekać na weryfikację',
+        #            'submit': "Zaloguj się"}
+        # return render(request, 'VolleyUp/form.html', context)
 
 
 class LogoutView(View):
@@ -116,10 +166,9 @@ class AddTrainingView(View):
         if form.is_valid():
             form.save()
             return redirect(reverse_lazy('calendar'))
-        else:
-            context = {'form': form,
-                       'submit': 'Dodaj trening'}
-            return render(request, 'VolleyUp/form.html', context)
+        context = {'form': form,
+                   'submit': 'Dodaj trening'}
+        return render(request, 'VolleyUp/form.html', context)
 
 
 class EditTrainingView(View):

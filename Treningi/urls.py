@@ -33,5 +33,6 @@ urlpatterns = [
     url(r'^contact/$', ContactView.as_view(), name='contact'),
     url(r'^rules/$', RulesView.as_view(), name='rules'),
     url(r'^user_details/(?P<user_id>(\d)+)/$', UserDetailsView.as_view(), name='user_details'),
+    url(r'^change_password/(?P<user_id>(\d)+)/$', ChangePasswordView.as_view(), name='change_password'),
 ]
 
