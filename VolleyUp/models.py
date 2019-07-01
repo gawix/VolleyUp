@@ -70,7 +70,10 @@ class UserManager(BaseUserManager):
 
 
 class Organization(models.Model):
-    name = models.IntegerField(choices=ORGANIZATIONS, default=5)
+    name = models.IntegerField(choices=ORGANIZATIONS, default=5, verbose_name="Organizacja")
+
+    def __str__(self):
+        return self.get_name_display()
 
 
 class User(AbstractUser):
@@ -95,7 +98,7 @@ class Training(models.Model):
     end_time = models.DateTimeField(default=lambda: timezone.now()+timedelta(hours=1.5), verbose_name="Koniec treningu")
     facility = models.IntegerField(choices=FACILITIES, default=1, verbose_name="Sala")
     level = models.IntegerField(choices=LEVELS, default=1, verbose_name="Poziom")
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, verbose_name="Organizacja")
     description = models.TextField(null=True, verbose_name="Opis treningu")
 
     class Meta:

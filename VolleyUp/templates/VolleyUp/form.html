@@ -5,7 +5,6 @@
     <form method="post">
         {% csrf_token %}
         <p class="text-center">{{ message|safe }}</p>
-        <p class="text-center">{{ user.email }}</p>
         <table class="form form-table">
         {{ form }}
         <tr><td colspan="2"><button type="submit" class="btn btn-info right"> {{ submit }} </button></td></tr>

@@ -67,6 +67,10 @@ class LoginForm(forms.Form):
 
 
 class AddTrainingForm(forms.ModelForm):
+    organization = forms.ModelChoiceField(queryset=Organization.objects.all(),
+                                          empty_label="Wybierz organizację",
+                                          )
+
     class Meta:
         model = Training
         fields = '__all__'
