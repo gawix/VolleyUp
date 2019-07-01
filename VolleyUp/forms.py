@@ -15,7 +15,7 @@ def validate_email(value):
 class RegisterUserForm(forms.Form):
     first_name = forms.CharField(max_length=64, label="Imię")
     last_name = forms.CharField(max_length=128, label="Nazwisko")
-    birth_date = forms.IntegerField(min_value=1930, max_value=2005, label="Rok urodzenia", initial=1990)
+    birth_date = forms.IntegerField(min_value=1930, max_value=2005, label="Rok urodzenia")
     sex = forms.ChoiceField(choices=SEX, label="Płeć")
     organization = forms.ChoiceField(choices=ORGANIZATIONS, label="Organizacja")
     level = forms.ChoiceField(choices=LEVELS, label=mark_safe("Jak oceniasz swój <br /> poziom umiejętności"))
@@ -28,7 +28,6 @@ class RegisterUserForm(forms.Form):
     def clean_confirm_password(self):
         password = self.cleaned_data.get("password")
         confirm_password = self.cleaned_data.get("confirm_password")
-        print(password, confirm_password)
         if password != confirm_password:
             raise forms.ValidationError(
                 "Wprowadź dwa razy to samo hasło"
@@ -39,12 +38,11 @@ class RegisterUserForm(forms.Form):
 class EditUserForm(UserChangeForm):
 
     password = None
-    email = None
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'organization', 'level']
-        labels = {'phone_number': 'Numer telefonu', 'birth_date': 'Rok urodzenia', 'sex': 'Płeć',
+        fields = ['email', 'first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'organization', 'level']
+        labels = {'email': 'Email', 'phone_number': 'Numer telefonu', 'birth_date': 'Rok urodzenia', 'sex': 'Płeć',
                   'organization': 'Organizacja', 'level': 'Poziom'}
 
 

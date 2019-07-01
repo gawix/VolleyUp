@@ -51,27 +51,6 @@ class RegisterUserView(View):
             return render(request, 'VolleyUp/form.html', context)
 
 
-# class EditUserView(View):
-#
-#     def get(self, request, user_id):
-#         try:
-#             user = User.objects.get(pk=user_id)
-#             form = RegisterUserForm(initial=model_to_dict(user))
-#             context = {'form': form,
-#                        'submit': 'Zapisz zmiany',
-#                        'user': user}
-#         except User.DoesNotExist:
-#             raise Http404('Taki użytkownik nie istnieje')
-#         return render(request, 'VolleyUp/form.html', context)
-#
-#     def post(self, request, user_id):
-#         user = User.objects.get(pk=user_id)
-#         form = RegisterUserForm(request.POST, initial=user)
-#         if form.is_valid():
-#             form.save()
-#             return redirect(reverse_lazy('verify_user'))
-
-
 class EditUserView(View):
 
     def get(self, request, user_id):

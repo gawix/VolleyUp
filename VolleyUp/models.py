@@ -76,7 +76,7 @@ class User(AbstractUser):
 
     phone_number = models.CharField(max_length=17)
     birth_date = models.IntegerField(blank=True)
-    sex = models.IntegerField(choices=SEX, default=1)
+    sex = models.IntegerField(choices=SEX, blank=True)
     organization = models.IntegerField(choices=ORGANIZATIONS, default=5)
     level = models.IntegerField(choices=LEVELS, default=1)
 

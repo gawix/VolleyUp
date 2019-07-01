@@ -9,6 +9,7 @@
             <b>Płeć:</b> {{ user.get_sex_display }}<br>
             <b>Organizacja:</b> {{ user.get_organization_display }}<br>
             <b>Poziom:</b> {{ user.get_level_display }}<br>
+            <button class="btn btn-info"><a href="/edit_user/{{ user.pk }}">Zmień dane</a></button>
     </div>
 
 {% endblock %}
