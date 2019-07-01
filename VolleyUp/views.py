@@ -41,9 +41,10 @@ class RegisterUserView(View):
             phone_number = form.cleaned_data.get('phone_number')
             password = form.cleaned_data.get('password')
             email = form.cleaned_data.get('email')
-            User.objects.create_user(birth_date=birth_date, password=password, email=email, first_name=first_name,
-                                     last_name=last_name, sex=sex, organization=organization, level=level,
-                                     phone_number=phone_number)
+            new_user = User.objects.create_user(birth_date=birth_date, password=password, email=email,
+                                                first_name=first_name, last_name=last_name, sex=sex, level=level,
+                                                phone_number=phone_number)
+            new_user.organization.add(organization)
             return redirect(reverse_lazy('login'))
         else:
             context = {'form': form,
@@ -65,7 +66,7 @@ class EditUserView(View):
         form = EditUserForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            return redirect(reverse_lazy('verify_user'))
+            return redirect(reverse_lazy('calendar'))
         else:
             context = {'form': form,
                        'submit': 'Zapisz zmiany'}
@@ -106,6 +107,7 @@ class ChangePasswordView(View):
 
 
 class LoginView(View):
+
     def get(self, request):
         context = {'form': LoginForm(),
                    'submit': 'Zaloguj się'}
@@ -141,13 +143,10 @@ class LoginView(View):
                    'submit': 'Zaloguj się',
                    'message': message}
         return render(request, 'VolleyUp/form.html', context)
-        # context = {'form': LoginForm(),
-        #            'message': 'Musisz się zarejestrować lub poczekać na weryfikację',
-        #            'submit': "Zaloguj się"}
-        # return render(request, 'VolleyUp/form.html', context)
 
 
 class LogoutView(View):
+
     def get(self, request):
         logout(request)
         return redirect(reverse_lazy('home'))
@@ -235,7 +234,7 @@ class CalendarView(generic.ListView):
 
         d = get_date(self.request.GET.get('month', None))
         cal = Calendar(d.year, d.month)
-        html_cal = cal.formatmonth(withyear=True)
+        html_cal = cal.formatmonth(self.request, withyear=True)
         context['calendar'] = mark_safe(html_cal)
 
         context['prev_month'] = prev_month(d)

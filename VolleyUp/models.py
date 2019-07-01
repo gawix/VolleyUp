@@ -85,7 +85,7 @@ class User(AbstractUser):
     birth_date = models.IntegerField(blank=True)
     sex = models.IntegerField(choices=SEX, blank=True)
     level = models.IntegerField(choices=LEVELS, default=1)
-    organization = models.ManyToManyField(Organization, verbose_name="Organizacja")
+    organization = models.ManyToManyField(Organization, verbose_name="Organizacja", related_name='users')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'level']
