@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f83fd301-a1e9-40a5-ac64-145b4025166b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Treningi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Treningi/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VolleyUp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/VolleyUp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VolleyUp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/VolleyUp/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VolleyUp/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VolleyUp/migrations/0002_auto_20190627_1023.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VolleyUp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/VolleyUp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/training.html" beforeDir="false" afterPath="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/training.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,15 +35,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VolleyUp/templates/VolleyUp/user_details.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="103" selection-start-line="11" selection-start-column="103" selection-end-line="11" selection-end-column="103" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Treningi/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="570">
@@ -48,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VolleyUp/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="41" column="65" lean-forward="true" selection-start-line="41" selection-start-column="65" selection-end-line="41" selection-end-column="65" />
+            <state relative-caret-position="444">
+              <caret line="62" column="18" lean-forward="true" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -63,8 +61,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VolleyUp/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+            <state relative-caret-position="174">
+              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -73,19 +71,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VolleyUp/templates/VolleyUp/form.html">
+        <entry file="file://$PROJECT_DIR$/Treningi/tests.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Treningi/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="428">
+              <caret line="81" column="31" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/VolleyUp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
+            <state relative-caret-position="355">
+              <caret line="107" column="64" selection-start-line="107" selection-start-column="64" selection-end-line="107" selection-end-column="64" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -94,19 +97,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VolleyUp/templates/VolleyUp/calendar.html">
+        <entry file="file://$PROJECT_DIR$/VolleyUp/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VolleyUp/templates/VolleyUp/verify_user.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="14" lean-forward="true" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
+            <state relative-caret-position="105">
+              <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,6 +113,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
               <caret line="18" column="78" lean-forward="true" selection-start-line="18" selection-start-column="78" selection-end-line="18" selection-end-column="78" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VolleyUp/templates/VolleyUp/training.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="585">
+              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
             </state>
           </provider>
         </entry>
@@ -152,28 +158,28 @@
         <option value="$PROJECT_DIR$/VolleyUp/widgets/bootstrap_datetimepicker.html" />
         <option value="$PROJECT_DIR$/VolleyUp/widgets.py" />
         <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/add_training.html" />
-        <option value="$PROJECT_DIR$/VolleyUp/admin.py" />
         <option value="$PROJECT_DIR$/Calendar/models.py" />
         <option value="$PROJECT_DIR$/Calendar/urls.py" />
         <option value="$PROJECT_DIR$/Calendar/views.py" />
         <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/info.html" />
         <option value="$PROJECT_DIR$/VolleyUp/static/VolleyUp/css/styles.css" />
-        <option value="$PROJECT_DIR$/Treningi/settings.py" />
         <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/contact.html" />
         <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/about.html" />
         <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/rules.html" />
-        <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/training.html" />
         <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/home.html" />
         <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/calendar.html" />
-        <option value="$PROJECT_DIR$/VolleyUp/models.py" />
         <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/verify_user.html" />
         <option value="$PROJECT_DIR$/VolleyUp/utils.py" />
-        <option value="$PROJECT_DIR$/VolleyUp/forms.py" />
         <option value="$PROJECT_DIR$/Treningi/urls.py" />
         <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/user_details.html" />
         <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/form.html" />
         <option value="$PROJECT_DIR$/VolleyUp/views.py" />
         <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/base.html" />
+        <option value="$PROJECT_DIR$/VolleyUp/forms.py" />
+        <option value="$PROJECT_DIR$/Treningi/settings.py" />
+        <option value="$PROJECT_DIR$/VolleyUp/admin.py" />
+        <option value="$PROJECT_DIR$/VolleyUp/templates/VolleyUp/training.html" />
+        <option value="$PROJECT_DIR$/VolleyUp/models.py" />
       </list>
     </option>
   </component>
@@ -205,6 +211,12 @@
               <item name="VolleyUp" type="b2602c69:ProjectViewProjectNode" />
               <item name="VolleyUp" type="462c0819:PsiDirectoryNode" />
               <item name="VolleyUp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VolleyUp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VolleyUp" type="462c0819:PsiDirectoryNode" />
+              <item name="VolleyUp" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="VolleyUp" type="b2602c69:ProjectViewProjectNode" />
@@ -344,18 +356,18 @@
       <workItem from="1561709403205" duration="488000" />
       <workItem from="1561709940776" duration="48000" />
       <workItem from="1561710919382" duration="7719000" />
-      <workItem from="1561987926787" duration="12859000" />
+      <workItem from="1561987926787" duration="17286000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121437000" />
+    <option name="totallyTimeSpent" value="125864000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.13890426" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13890426" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -369,7 +381,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5002767" side_tool="true" weight="0.3297414" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4997233" visible="true" weight="0.23326133" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4997233" visible="true" weight="0.41468683" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32937366" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -497,13 +509,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VolleyUp/templates/VolleyUp/training.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VolleyUp/static/VolleyUp/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -511,28 +516,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Treningi/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="133" column="18" selection-start-line="133" selection-start-column="18" selection-end-line="133" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Treningi/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Treningi/views.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VolleyUp/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../python_projekt_koncowy/venv/lib/python3.6/site-packages/django/contrib/auth/base_user.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -552,16 +537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VolleyUp/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -601,10 +576,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/VolleyUp/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="174">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Treningi/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Treningi/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="81" column="31" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VolleyUp/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -616,12 +611,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/VolleyUp/templates/VolleyUp/training.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/VolleyUp/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="41" column="65" lean-forward="true" selection-start-line="41" selection-start-column="65" selection-end-line="41" selection-end-column="65" />
+        <state relative-caret-position="444">
+          <caret line="62" column="18" lean-forward="true" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VolleyUp/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="107" column="64" selection-start-line="107" selection-start-column="64" selection-end-line="107" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>

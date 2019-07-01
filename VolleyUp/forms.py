@@ -41,9 +41,9 @@ class EditUserForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'organization', 'level']
+        fields = ['email', 'first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'level']
         labels = {'email': 'Email', 'phone_number': 'Numer telefonu', 'birth_date': 'Rok urodzenia', 'sex': 'Płeć',
-                  'organization': 'Organizacja', 'level': 'Poziom'}
+                  'level': 'Poziom'}
 
 
 class ChangePasswordForm(forms.Form):

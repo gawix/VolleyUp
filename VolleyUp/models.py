@@ -69,6 +69,10 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
+class Organization(models.Model):
+    name = models.IntegerField(choices=ORGANIZATIONS, default=5)
+
+
 class User(AbstractUser):
 
     username = None
@@ -77,11 +81,11 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=17)
     birth_date = models.IntegerField(blank=True)
     sex = models.IntegerField(choices=SEX, blank=True)
-    organization = models.IntegerField(choices=ORGANIZATIONS, default=5)
     level = models.IntegerField(choices=LEVELS, default=1)
+    organization = models.ManyToManyField(Organization, verbose_name="Organizacja")
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['phone_number', 'birth_date', 'sex', 'organization', 'level']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'level']
 
     objects = UserManager()
 
@@ -91,7 +95,7 @@ class Training(models.Model):
     end_time = models.DateTimeField(default=lambda: timezone.now()+timedelta(hours=1.5), verbose_name="Koniec treningu")
     facility = models.IntegerField(choices=FACILITIES, default=1, verbose_name="Sala")
     level = models.IntegerField(choices=LEVELS, default=1, verbose_name="Poziom")
-    organization = models.IntegerField(choices=ORGANIZATIONS, default=5, verbose_name="Organizacja")
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     description = models.TextField(null=True, verbose_name="Opis treningu")
 
     class Meta:
@@ -102,5 +106,5 @@ class Training(models.Model):
         url = reverse('edit_training', args=(self.id,))
         local_start_time = timezone.localtime(self.start_time)
         local_end_time = local_start_time + timedelta(hours=1.5)
-        return f'<a href="{url}">{self.get_organization_display()}, ' \
+        return f'<a href="{url}">{self.organization.get_name_display()}, ' \
                f'{local_start_time.strftime("%H:%M")} - {local_end_time.strftime("%H:%M")} </a>'

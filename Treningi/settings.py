@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'Treningi.wsgi.application'
 DATABASES = {
     'default': {
         'HOST': '127.0.0.1',
-        'NAME': 'Volley_Up',
+        'NAME': 'Volley_Up_test',
         'ENGINE': 'django.db.backends.postgresql',
         'USER': 'postgres',
         'PASSWORD': 'coderslab',
