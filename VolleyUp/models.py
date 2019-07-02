@@ -72,8 +72,8 @@ class UserManager(BaseUserManager):
 class Organization(models.Model):
     name = models.IntegerField(choices=ORGANIZATIONS, default=5, verbose_name="Organizacja")
 
-    def __str__(self):
-        return self.get_name_display()
+    # def __str__(self):
+    #     return self.get_name_display()
 
 
 class User(AbstractUser):
