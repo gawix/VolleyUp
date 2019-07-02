@@ -1,8 +1,8 @@
+from datetime import timedelta
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
-from django.core.validators import RegexValidator
+from django.urls import reverse
 from django.utils import timezone
 
 LEVELS = (
@@ -69,42 +69,45 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
+class Organization(models.Model):
+    name = models.IntegerField(choices=ORGANIZATIONS, default=5, verbose_name="Organizacja")
+
+    # def __str__(self):
+    #     return self.get_name_display()
+
+
 class User(AbstractUser):
 
     username = None
     email = models.EmailField('user email', unique=True)
 
-    phone_number = models.CharField(verbose_name='numer telefonu', max_length=17)
-    birth_date = models.IntegerField(verbose_name='data urodzenia', blank=True)
-    sex = models.IntegerField(choices=SEX, default=1)
-    organization = models.IntegerField(choices=ORGANIZATIONS, default=5)
+    phone_number = models.CharField(max_length=17)
+    birth_date = models.IntegerField(blank=True)
+    sex = models.IntegerField(choices=SEX, blank=True)
     level = models.IntegerField(choices=LEVELS, default=1)
+    organization = models.ManyToManyField(Organization, verbose_name="Organizacja", related_name='users')
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['phone_number', 'birth_date', 'sex', 'organization', 'level']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'level']
 
     objects = UserManager()
 
 
-TRAININGS = (
-
-    (1, "PZU, poniedziałek, 20:30"),
-    (2, "Volley Up, wtorek, 18:30"),
-    (3, "Siemens, wtorek, 21:30"),
-    (4, "Wedel, środa, 18:30"),
-    (5, "PZU, środa, 20:00"),
-    (6, "PJATK, środa, 21:30"),
-    (7, "PJATK, czwartek, 18:30"),
-    (8, "Volley Up, czwartek, 20:30"),
-
-)
-
-
 class Training(models.Model):
-    start_time = models.IntegerField(choices=TRAININGS, default=1)
-    facility = models.IntegerField(choices=FACILITIES, default=1)
-    level = models.IntegerField(choices=LEVELS, default=1)
-    organization = models.IntegerField(choices=ORGANIZATIONS, default=5)
-    description = models.TextField(null=True)
+    start_time = models.DateTimeField(default=timezone.now, verbose_name="Początek treningu")
+    end_time = models.DateTimeField(default=lambda: timezone.now()+timedelta(hours=1.5), verbose_name="Koniec treningu")
+    facility = models.IntegerField(choices=FACILITIES, default=1, verbose_name="Sala")
+    level = models.IntegerField(choices=LEVELS, default=1, verbose_name="Poziom")
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, verbose_name="Organizacja")
+    description = models.TextField(null=True, verbose_name="Opis treningu")
 
+    class Meta:
+        ordering = ('start_time',)
 
+    @property
+    def get_html_url(self):
+        url = reverse('edit_training', args=(self.id,))
+        local_start_time = timezone.localtime(self.start_time)
+        local_end_time = local_start_time + timedelta(hours=1.5)
+        return f'<a href="{url}">{self.organization.get_name_display()}, ' \
+               f'{local_start_time.strftime("%H:%M")} - {local_end_time.strftime("%H:%M")} </a>'

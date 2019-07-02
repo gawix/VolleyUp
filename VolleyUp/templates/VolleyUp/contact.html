@@ -1,14 +1,16 @@
 {% extends 'VolleyUp/base.html' %}
-
 {% block content %}
 
+
+    <h3 style="text-align: center">Skontaktuj się z nami:</h3><br>
     <form method="post">
         {% csrf_token %}
-        <p class="text-center">{{ message|safe }}</p>
         <table class="form form-table">
         {{ form }}
         <tr><td colspan="2"><button type="submit" class="btn btn-info right"> {{ submit }} </button></td></tr>
         </table>
     </form>
+    {{ message }}
+
 
 {% endblock %}

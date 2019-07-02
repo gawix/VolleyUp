@@ -1,45 +1,67 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>VolleyUp</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'VolleyUp/css/styles.css' %}">
     </head>
 
     <body>
     {% block header %}
         <header>
+
             <nav class="navbar navbar-expand-lg justify-content-around">
-                <a href="/" class="navbar-brand main-logo">
-                    Volley <span>Up</span>
-                </a>
+                <a href="{% url 'calendar' %}" class="navbar-brand main-logo">
+                    <span class="navbar-brand">Volley Up</span></a>
 
-    {% block login %}
-    {% endblock %}
-
+        {% block login %}
+                <div>
+                    {% if user.is_authenticated %}
+                        <a href="/user_details/{{ user.pk }}">{{ user.first_name }} (Szczegóły)</a><br>
+                            <a href="{% url 'logout' %}" class="logout">Wyloguj się</a>
+                    {% elif submit == 'Zarejestruj się' %}
+                        <a href="{% url 'login' %}" class="login">Zaloguj się</a>
+                    {% elif submit == 'Zaloguj się' %}
+                        <a href="{% url 'register_user' %}" class="login">Zarejestruj się</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="login">Zaloguj się</a><br>
+                        <a href="{% url 'register_user' %}" class="login">Zarejestruj się</a>
+                    {% endif %}
+                </div>
             </nav>
-                <p>
-                    <ul class="nav nounderline text-uppercase">
-                        <li class="nav-item ml-4">
-                            <a class="nav-link" href="">Info o aplikacji</a>
-                        </li>
-                        <li class="nav-item ml-4">
-                            <a class="nav-link" href="">Regulamin</a>
-                        </li>
-                        <li class="nav-item ml-4">
-                            <a class="nav-link" href="">Kontakt</a>
-                        </li>
-                    </ul>
-                </p>
+
+        {% endblock %}
+
+                <ul class="nav nounderline text-uppercase">
+                    <li class="nav-item ml-4">
+                        <a class="nav-link" href="{% url 'about' %}">Info o aplikacji</a>
+                    </li>
+                    <li class="nav-item ml-4">
+                        <a class="nav-link" href="{% url 'rules' %}">Regulamin</a>
+                    </li>
+                    <li class="nav-item ml-4">
+                        <a class="nav-link" href="{% url 'contact' %}">Kontakt</a>
+                    </li>
+                    {% if user.is_staff == True %}
+                    <li class="nav-item ml-4">
+                        <a class="nav-link" href="{% url 'verify_user' %}">Zweryfikuj użytkowników</a>
+                    </li>
+                    <li class="nav-item ml-4">
+                        <a class="nav-link" href="{% url 'add_training' %}">Dodaj trening</a>
+                    </li>
+                    {% endif %}
+                </ul>
         </header>
 
-        {% endblock %}
+    {% endblock %}
 
-        {% block content %}
-        {% endblock %}
+    {% block content %}
+    {% endblock %}
 
     </body>
 </html>

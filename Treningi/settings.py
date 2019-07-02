@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'VolleyUp'
+    'VolleyUp',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'Treningi.wsgi.application'
 DATABASES = {
     'default': {
         'HOST': '127.0.0.1',
-        'NAME': 'Volley_Up',
+        'NAME': 'Volley_Up_test',
         'ENGINE': 'django.db.backends.postgresql',
         'USER': 'postgres',
         'PASSWORD': 'coderslab',
@@ -126,3 +126,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = ("VolleyUp/")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    'VolleyUp/static/VolleyUp/css'
+]
+LOGIN_URL = 'login'

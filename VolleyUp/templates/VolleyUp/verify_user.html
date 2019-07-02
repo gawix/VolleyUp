@@ -1,23 +1,38 @@
 {% extends 'VolleyUp/base.html' %}
-{% block login %}
-{% endblock %}
+
 {% block content %}
 
-    Użytkownicy do zweryfikowania:
+<div class="text-center">
+    <h3>Użytkownicy do zweryfikowania:</h3><br>
 
-    <ul><br>
+    <ol><br>
+    <h6 style="color: red">{{ message }} {{ deleted_user }}</h6>
     {% for user in users %}
         <li>
-            Imię i nazwisko: {{ user.first_name }} {{ user.last_name }}<br>
-            Email: {{ user.email }}<br>
+            <b>Imię i nazwisko:</b> {{ user.first_name }} {{ user.last_name }}<br>
+            <b>Email:</b> {{ user.email }}<br>
+            <b>Numer telefonu:</b> {{ user.phone_number }}<br>
+            <b>Rok urodzenia:</b> {{ user.birth_date }}<br>
+            <b>Płeć:</b> {{ user.get_sex_display }}<br>
+            <b>Organizacja:</b> {{ user.get_organization_display }}<br>
+            <b>Poziom:</b> {{ user.get_level_display }}<br>
             <form method="post">
                 {% csrf_token %}
                 <input type="hidden" name="post_id" value="{{ user.id }}">
                 <input type="hidden" name="action" value="verify">
                 <input type="submit" value="Zatwierdź">
             </form>
+            <button class="btn btn-info"><a href="/edit_user/{{ user.pk }}">Zmień</a></button>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{ user.id }}">
+                <input type="hidden" name="action" value="modify">
+                <input type="submit" value="Usuń">
+            </form>
+
         </li><br>
     {% endfor %}
-    </ul>
+    </ol>
+</div>
 
 {% endblock %}
