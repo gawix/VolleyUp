@@ -72,30 +72,13 @@ class UserManager(BaseUserManager):
 class Organization(models.Model):
     name = models.IntegerField(choices=ORGANIZATIONS, default=5, verbose_name="Organizacja")
 
-    # def __str__(self):
-    #     return self.get_name_display()
-
-
-class User(AbstractUser):
-
-    username = None
-    email = models.EmailField('user email', unique=True)
-
-    phone_number = models.CharField(max_length=17)
-    birth_date = models.IntegerField(blank=True)
-    sex = models.IntegerField(choices=SEX, blank=True)
-    level = models.IntegerField(choices=LEVELS, default=1)
-    organization = models.ManyToManyField(Organization, verbose_name="Organizacja", related_name='users')
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'level']
-
-    objects = UserManager()
+    def __str__(self):
+        return self.get_name_display()
 
 
 class Training(models.Model):
     start_time = models.DateTimeField(default=timezone.now, verbose_name="Początek treningu")
-    end_time = models.DateTimeField(default=lambda: timezone.now()+timedelta(hours=1.5), verbose_name="Koniec treningu")
+    end_time = models.DateTimeField(default=timezone.now()+timedelta(hours=1.5), verbose_name="Koniec treningu")
     facility = models.IntegerField(choices=FACILITIES, default=1, verbose_name="Sala")
     level = models.IntegerField(choices=LEVELS, default=1, verbose_name="Poziom")
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, verbose_name="Organizacja")
@@ -111,3 +94,27 @@ class Training(models.Model):
         local_end_time = local_start_time + timedelta(hours=1.5)
         return f'<a href="{url}">{self.organization.get_name_display()}, ' \
                f'{local_start_time.strftime("%H:%M")} - {local_end_time.strftime("%H:%M")} </a>'
+
+
+class Uprawnienia(models.Model):
+    typ_uprawnien = models.CharField(max_length=64)
+    training = models.ManyToManyField(Training, verbose_name='Trening', related_name='uprawnienia')
+
+
+class User(AbstractUser):
+
+    username = None
+    email = models.EmailField('user email', unique=True)
+
+    phone_number = models.CharField(max_length=17)
+    birth_date = models.IntegerField(blank=True)
+    sex = models.IntegerField(choices=SEX, blank=True)
+    level = models.IntegerField(choices=LEVELS, default=1)
+    organization = models.ManyToManyField(Organization, verbose_name="Organizacja", related_name='users')
+    uprawnienia = models.ManyToManyField(Uprawnienia, verbose_name='Uprawnienia', related_name='users_upr')
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'level']
+
+    objects = UserManager()
+

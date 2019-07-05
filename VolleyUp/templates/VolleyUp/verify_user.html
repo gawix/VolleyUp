@@ -14,7 +14,7 @@
             <b>Numer telefonu:</b> {{ user.phone_number }}<br>
             <b>Rok urodzenia:</b> {{ user.birth_date }}<br>
             <b>Płeć:</b> {{ user.get_sex_display }}<br>
-            <b>Organizacja:</b> {{ user.get_organization_display }}<br>
+            <b>Organizacja:</b> {{ user.organization. }}<br>
             <b>Poziom:</b> {{ user.get_level_display }}<br>
             <form method="post">
                 {% csrf_token %}
