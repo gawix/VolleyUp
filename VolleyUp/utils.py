@@ -54,11 +54,13 @@ class Calendar(HTMLCalendar):
         return f"<tr> {week} </tr>"
 
     def formatmonth(self, request, withyear=True):
-        avail_perm = None
-        for perm in request.user.uprawnienia.all():
-            avail_perm = perm
+        # avail_perm = None
+        # for perm in request.user.uprawnienia.organization:
+        #     avail_perm = perm
+        #     print("DUPADUPA", avail_perm)
+        print('DDDDDDDDDDDDDDDDDDDDDDD', request.user.uprawnienia.get())
         trainings = Training.objects.filter(start_time__year=self.year, start_time__month=self.month,
-                                            uprawnienia=avail_perm)
+                                            organization__uprawnienia__organization=request.user.uprawnienia.typ_uprawnien)
         cal = f'<table border="0" cellpadding="0" cellspacing="0" class="calendar">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
         cal += f'{self.formatweekheader()}\n'

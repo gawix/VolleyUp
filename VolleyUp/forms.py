@@ -17,7 +17,7 @@ class RegisterUserForm(forms.Form):
     last_name = forms.CharField(max_length=128, label="Nazwisko")
     birth_date = forms.IntegerField(min_value=1930, max_value=2005, label="Rok urodzenia")
     sex = forms.ChoiceField(choices=SEX, label="Płeć")
-    organization = forms.ChoiceField(choices=ORGANIZATIONS, label="Organizacja")
+    passcode = forms.CharField(max_length=32, label="Czy jesteś z jakiejś firmy/uczelni? Podaj jakiej", required=False)
     level = forms.ChoiceField(choices=LEVELS, label=mark_safe("Jak oceniasz swój <br /> poziom umiejętności"))
     phone_number = forms.RegexField(regex=r'^\+?1?\d{9,15}$', label="Numer telefonu",
                                     error_messages={'invalid': "Numer telefonu musi zawierać między 9-15 cyfr"})
@@ -41,9 +41,10 @@ class EditUserForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'level', 'organization']
+        fields = ['email', 'first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'level', 'organization',
+                  'uprawnienia']
         labels = {'email': 'Email', 'phone_number': 'Numer telefonu', 'birth_date': 'Rok urodzenia', 'sex': 'Płeć',
-                  'level': 'Poziom', 'organization': 'Organizacja'}
+                  'level': 'Poziom', 'organization': 'Organizacja', 'uprawnienia': 'Uprawnienia'}
 
 
 class ChangePasswordForm(forms.Form):

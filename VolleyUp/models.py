@@ -70,7 +70,7 @@ class UserManager(BaseUserManager):
 
 
 class Organization(models.Model):
-    name = models.IntegerField(choices=ORGANIZATIONS, default=5, verbose_name="Organizacja")
+    name = models.IntegerField(choices=ORGANIZATIONS, null=True, default=5, verbose_name="Organizacja")
 
     def __str__(self):
         return self.get_name_display()
@@ -81,7 +81,8 @@ class Training(models.Model):
     end_time = models.DateTimeField(default=timezone.now()+timedelta(hours=1.5), verbose_name="Koniec treningu")
     facility = models.IntegerField(choices=FACILITIES, default=1, verbose_name="Sala")
     level = models.IntegerField(choices=LEVELS, default=1, verbose_name="Poziom")
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, verbose_name="Organizacja")
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, verbose_name="Organizacja",
+                                     related_name='training_org')
     description = models.TextField(null=True, verbose_name="Opis treningu")
 
     class Meta:
@@ -98,7 +99,10 @@ class Training(models.Model):
 
 class Uprawnienia(models.Model):
     typ_uprawnien = models.CharField(max_length=64)
-    training = models.ManyToManyField(Training, verbose_name='Trening', related_name='uprawnienia')
+    organization = models.ManyToManyField(Organization, verbose_name='Organizacja', related_name='uprawnienia')
+
+    def __str__(self):
+        return self.typ_uprawnien
 
 
 class User(AbstractUser):
@@ -110,6 +114,7 @@ class User(AbstractUser):
     birth_date = models.IntegerField(blank=True)
     sex = models.IntegerField(choices=SEX, blank=True)
     level = models.IntegerField(choices=LEVELS, default=1)
+    passcode = models.CharField(max_length=32, null=True, verbose_name='Podaj passcode')
     organization = models.ManyToManyField(Organization, verbose_name="Organizacja", related_name='users')
     uprawnienia = models.ManyToManyField(Uprawnienia, verbose_name='Uprawnienia', related_name='users_upr')
 
@@ -117,4 +122,3 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number', 'birth_date', 'sex', 'level']
 
     objects = UserManager()
-

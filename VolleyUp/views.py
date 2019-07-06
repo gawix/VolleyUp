@@ -36,15 +36,14 @@ class RegisterUserView(View):
             last_name = form.cleaned_data.get('last_name')
             birth_date = form.cleaned_data.get('birth_date')
             sex = form.cleaned_data.get('sex')
-            organization = form.cleaned_data.get('organization')
+            passcode = form.cleaned_data.get('passcode')
             level = form.cleaned_data.get('level')
             phone_number = form.cleaned_data.get('phone_number')
             password = form.cleaned_data.get('password')
             email = form.cleaned_data.get('email')
             new_user = User.objects.create_user(birth_date=birth_date, password=password, email=email,
                                                 first_name=first_name, last_name=last_name, sex=sex, level=level,
-                                                phone_number=phone_number)
-            new_user.organization.add(organization)
+                                                phone_number=phone_number, passcode=passcode)
             return redirect(reverse_lazy('login'))
         else:
             context = {'form': form,
@@ -66,7 +65,10 @@ class EditUserView(View):
         form = EditUserForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            return redirect(reverse_lazy('calendar'))
+            try:
+                return redirect(reverse_lazy('verify_user'))
+            except:
+                return redirect(reverse_lazy('user_details'))
         else:
             context = {'form': form,
                        'submit': 'Zapisz zmiany'}
